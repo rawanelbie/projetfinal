@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Interactive</title>
+    <style>
+        #image {
+            width: 400px;
+            height: 300px;
+            border: 2px solid black;
+            text-align: center;
+            line-height: 300px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+        }
+        .preview {
+            width: 100px;
+            height: 70px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="addTabFocus()">
+    <h1>Galerie Interactive</h1>
+    <p id="image">Hover over an image below to display here</p>
+    <div>
+        <img class="preview" src="image1.jpg" alt="Description of Image 1" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+        <img class="preview" src="image2.jpg" alt="Description of Image 2" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+        <img class="preview" src="image3.jpg" alt="Description of Image 3" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+        <img class="preview" src="image4.jpg" alt="Description of Image 4" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+        <img class="preview" src="image5.jpg" alt="Description of Image 5" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+        <img class="preview" src="image6.jpg" alt="Description of Image 6" tabindex="0" 
+             onmouseover="upDate(this)" onmouseleave="unDo()" 
+             onfocus="upDate(this)" onblur="unDo()">
+    </div>
+    <script src="galerie.js"></script>
+</body>
+</html>
+// Fonction pour mettre à jour l'image et le texte
+function upDate(previewPic) {
+    console.log("Mouseover or focus triggered");
+    let imageDiv = document.getElementById("image");
+    imageDiv.style.backgroundImage = `url('${previewPic.src}')`;
+    imageDiv.innerHTML = previewPic.alt;
+}
+
+// Fonction pour réinitialiser l'image et le texte
+function unDo() {
+    console.log("Mouseleave or blur triggered");
+    let imageDiv = document.getElementById("image");
+    imageDiv.style.backgroundImage = "url('')";
+    imageDiv.innerHTML = "Hover over an image below to display here";
+}
+
+// Ajouter l'attribut tabindex aux images via une boucle
+function addTabFocus() {
+    console.log("Page loaded, adding tabindex");
+    const images = document.querySelectorAll(".preview");
+    for (let i = 0; i < images.length; i++) {
+        images[i].setAttribute("tabindex", "0");
+    }
+}
